@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-create-post',
@@ -6,13 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+  blogBody: string;
+  blogTitle: string;
+  @Output() postCreated$ = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   onAddPost() {
-    alert('something was clicked');
+    const post = {title: this.blogTitle, content: this.blogBody};
+    this.postCreated$.emit(post);
   }
 }
