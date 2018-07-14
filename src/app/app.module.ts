@@ -7,6 +7,7 @@ import {MatButtonModule, MatCardModule, MatExpansionModule, MatFormFieldModule, 
 import {FormsModule} from '@angular/forms';
 import {HeaderComponent} from './components/header/header.component';
 import {PostListComponent} from './components/post-list/post-list.component';
+import {PostService} from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import {PostListComponent} from './components/post-list/post-list.component';
     MatToolbarModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
