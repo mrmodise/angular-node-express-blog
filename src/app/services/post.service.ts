@@ -15,9 +15,12 @@ export class PostService {
   }
 
   savePost(post: Post) {
-    console.log(`Post data ${JSON.stringify(post)}`);
-    this.posts.push(post);
-    this.postUpdated.next([...this.posts]);
+
+    this.http.post('/api/post/create', post).subscribe((res) => {
+      console.log(res);
+      this.posts.push(post);
+      this.postUpdated.next([...this.posts]);
+    });
   }
 
   getPostsUpdatedListener() {
@@ -25,7 +28,7 @@ export class PostService {
   }
 
   getPosts() {
-    return this.http.get<{message: string, posts: Post[]}>('/api/posts').subscribe(data => {
+    return this.http.get<{ message: string, posts: Post[] }>('/api/posts').subscribe(data => {
       this.posts = data.posts;
       this.postUpdated.next([...this.posts]);
     });
