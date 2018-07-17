@@ -1,6 +1,10 @@
-const express = require("express");
+const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const Post = require('./models/post');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/mean2', {useNewUrlParser: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -9,7 +13,16 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/post/create', (req, res, next) => {
-  const post = req.body;
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+
+  post.save((err) => {
+    if (err) return next(err);
+
+  });
+
   console.log(post);
   res.status(201).json({
     message: "Post added successfully"
