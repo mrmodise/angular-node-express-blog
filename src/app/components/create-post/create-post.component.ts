@@ -26,5 +26,6 @@ export class CreatePostComponent implements OnInit {
     const post: Post = {id: '', title: postForm.value.blogTitle, content: postForm.value.blogBody};
     this.postService.savePost(post);
     this.postCreated$.emit(post);
+    postForm.resetForm();
   }
 }
