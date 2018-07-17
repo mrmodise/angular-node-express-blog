@@ -41,8 +41,18 @@ export class PostService {
         });
       }))
       .subscribe(transformedPosts => {
-      this.posts = transformedPosts;
-      this.postUpdated.next([...this.posts]);
-    });
+        this.posts = transformedPosts;
+        this.postUpdated.next([...this.posts]);
+      });
+  }
+
+  deletePost(id: string) {
+    return this.http.delete('/api/post/' + id)
+      .subscribe(() => {
+        console.log('Post successfully deleted');
+        const updatedPosts = this.posts.filter(post => post.id !== id);
+        this.posts = updatedPosts;
+        this.postUpdated.next([...this.posts]);
+      });
   }
 }
