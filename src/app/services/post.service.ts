@@ -16,9 +16,9 @@ export class PostService {
   }
 
   savePost(post: Post) {
-
-    this.http.post('/api/post/create', post).subscribe((res) => {
-      console.log(res);
+    return this.http.post<{ message: string, id: string }>('/api/post/create', post).subscribe((res) => {
+      const postId = res.id;
+      post.id = postId;
       this.posts.push(post);
       this.postUpdated.next([...this.posts]);
     });
