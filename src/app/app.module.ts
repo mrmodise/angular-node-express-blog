@@ -9,6 +9,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {PostListComponent} from './components/post-list/post-list.component';
 import {PostService} from './services/post.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
