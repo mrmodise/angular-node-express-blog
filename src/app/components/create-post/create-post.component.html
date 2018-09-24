@@ -1,11 +1,11 @@
 <mat-card>
   <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <mat-form-field>
-      <input matInput type="text" required name="blogTitle" placeholder="Enter post title" ngModel #blogTitle="ngModel">
+      <input matInput type="text" required name="blogTitle" placeholder="Enter post title" [ngModel]="post.title" #blogTitle="ngModel">
       <mat-error *ngIf="blogTitle.invalid">Please enter the blog title</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput ngModel name="blogBody" required rows="4" placeholder="Enter post body" #blogBody="ngModel"></textarea>
+      <textarea matInput [ngModel]="post.content" name="blogBody" required rows="4" placeholder="Enter post body" #blogBody="ngModel"></textarea>
       <mat-error *ngIf="blogBody.invalid">Please enter the blog content</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Save</button>
